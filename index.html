@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Teachers' Day Invitation</title>
   <style>
     html, body {
       margin: 0;
       height: 100%;
-      overflow: hidden;
       font-family: 'Segoe UI', Arial, sans-serif;
     }
     #bg {
@@ -23,15 +23,17 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      padding: 10px;
     }
 
     /* Teaser */
     .teaser {
-      font-size: 28px;
+      font-size: 6vw; /* scales with screen */
+      max-width: 90%;
       font-weight: 600;
       color: #ffffff;
       background: rgba(0,0,0,0.5);
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 8px;
       cursor: pointer;
       animation: pulse 1.8s infinite;
@@ -52,10 +54,10 @@
     /* Invitation card */
     .card {
       display: none;
-      max-width: 700px;
+      max-width: 90%;
       border: 2.5px solid #c9a646;
       border-radius: 14px;
-      padding: 35px;
+      padding: 5vw;
       background: rgba(255, 255, 255, 0.95);
       box-shadow: 0 6px 18px rgba(0,0,0,0.2);
       opacity: 0;
@@ -75,15 +77,23 @@
     h2 {
       color: #1a2a4f;
       margin-bottom: 15px;
-      font-size: 24px;
+      font-size: 5vw; /* scales with screen */
     }
     p {
       color: #333333;
-      font-size: 16px;
+      font-size: 3.8vw;
       line-height: 1.6;
     }
     b {
       color: #7a1c1c;
+    }
+
+    /* Desktop and larger tablets */
+    @media (min-width: 768px) {
+      .teaser { font-size: 28px; }
+      h2 { font-size: 28px; }
+      p { font-size: 16px; }
+      .card { max-width: 700px; padding: 35px; }
     }
   </style>
 </head>
