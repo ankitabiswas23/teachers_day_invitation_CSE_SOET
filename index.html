@@ -4,30 +4,99 @@
   <meta charset="utf-8">
   <title>Teachers' Day Invitation</title>
   <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    #bg {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
     body {
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
       text-align: center;
-      font-family: Arial, sans-serif;
-      background: #f9fbfd;
-      margin: 0;
     }
+
+    /* Teaser */
+    .teaser {
+      font-size: 28px;
+      font-weight: 600;
+      color: #ffffff;
+      background: rgba(0,0,0,0.5);
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      animation: pulse 1.8s infinite;
+    }
+    .teaser:hover {
+      background: rgba(0,0,0,0.7);
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.85; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(4); opacity: 0; }
+    }
+
+    /* Invitation card */
     .card {
+      display: none;
       max-width: 700px;
-      border: 3px solid #d4af37;
-      border-radius: 12px;
-      padding: 30px;
-      background: #ffffff;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      border: 2.5px solid #c9a646;
+      border-radius: 14px;
+      padding: 35px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    .card.show {
+      display: block;
+      animation: fadeZoomIn 1s forwards;
+    }
+
+    @keyframes fadeZoomIn {
+      0% { opacity: 0; transform: scale(0.6) translateY(50px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* Text Styling */
+    h2 {
+      color: #1a2a4f;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+    p {
+      color: #333333;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    b {
+      color: #7a1c1c;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h2>🌸 Teachers’ Day Celebration 2025 🌸</h2>
+  <!-- Vanta background container -->
+  <div id="bg"></div>
 
+  <!-- Teaser -->
+  <div class="teaser" id="teaser">🚫 Do Not Click 🚫</div>
+
+  <!-- Invitation -->
+  <div class="card" id="card">
+    <h2>🌸 Teachers’ Day Celebration 2025 🌸</h2>
     <p>With utmost respect and heartfelt gratitude,<br>
     We, the students of 3rd Year, Department of Computer Science and Engineering,<br>
     cordially invite the esteemed Professors of the CSE Department<br>
@@ -45,5 +114,34 @@
     <p>— Organized with love and respect by the students of 3rd Year,<br>
     CSE Department, School of Engineering and Technology, Adamas University</p>
   </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.topology.min.js"></script>
+  <script>
+    VANTA.TOPOLOGY({
+      el: "#bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x89964e,
+      backgroundColor: 0x2222
+    });
+
+    const teaser = document.getElementById('teaser');
+    const card = document.getElementById('card');
+
+    teaser.addEventListener('click', () => {
+      teaser.style.animation = "explode 0.8s forwards";
+      setTimeout(() => {
+        teaser.style.display = "none";
+        card.classList.add("show");
+      }, 800);
+    });
+  </script>
 </body>
 </html>
